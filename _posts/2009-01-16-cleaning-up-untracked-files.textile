@@ -1,31 +1,31 @@
 ---
 published: false
 layout: post
-title: cleaning up untracked files
+title: membersihkan berkas yang belum terjejak
 category: beginner
 ---
 
-Our first reader submitted tip comes from "Dav Glass":http://blog.davglass.com/, and it elaborates on a command used to keep your repository nice and tidy. Have a tip you'd like to share? "Submit it!":http://gitready.com/submit.html
+Tip pertama kiriman pembaca datang dari "Dav Glass":http://blog.davglass.com/, dan membahas perintah untuk menjaga repositori agar tetap bersih. Punya tip untuk dibagi? "Kirimkan!":http://gitready.com/submit.html
 
-Files and directories may pile up in your working directory that are left over from merges, generated, or perhaps got mistakenly put there. Whatever the case, you don't need to ignore them in your @.gitignore@, you just need to remove them. Running
+Berkas dan direktori dapat menumpuk di direktori kerja Anda, yang bisa berasal dari <em>merge</em>, hasil <em>auto generate</em>, atau mungkin tidak sengaja diletakkan. Apapun itu, Anda tidak perlu mengabaikannya via @.gitignore@, Anda cukup membuangnya. Menjalankan:
 
 @git clean -n -d <path>@
 
-will do a 'dry run' of the command and show you just what files and folders are going to be removed. Running it on the "gitready":http://github.com/qrush/gitready gives this output:
+akan melakukan '<em>dry run</em>' dari @git clean@ dan memberitahu Anda berkas dan direktori apa saja yang akan dibuang. Menjalankannya pada "gitready":http://github.com/qrush/gitready akan memberikan output:
 
 <pre>
 Would remove _posts/2009-01-16-cleaning-up-untracked-files.textile
 </pre>
 
-Which definitely would be bad if it was removed. I haven't added the post to the staging area yet, so the file appears as untracked. If you only want files to be cleaned up and not empty directories, take out the @-d@ option. Once you're sure that you do want to blow away all of those files, doing
+Yang tentunya tidak diinginkan. Saya belum menambahkan post ini ke <em>staging</em> area, jadi berkas ini belum terjejak (<em>untracked</em>). Jika hanya berkas (<em>files</em>) yang ingin dibersihkan dan bukan direktori kosong, hilangkan opsi @-d@. Jika sudah yakin ingin membuang semua berkas tersebut, menjalankan
 
 @git clean -d <path>@ 
 
-actually performs the deletion. If you omit the @<path>@ git will perform it on your current directory. Also, you may need to throw in the @-f@ option depending on permissions and other situations that may crop up. 
+akan melakukan penghapusan. Jika Anda mengabaikan @<path>@, git akan melakukan penghapusan pada direktori dimana Anda mejalankannya. Mungkin Anda perlu menambahkan opsi @-f@ jika dirasa bakal ada masalah hak akses atau situasi lainnya.
 
-Cleaning also has a few other helpful options: if you want to perform a normal clean and clear out all the files that git usually ignores, the @-x@ flag will help immensely. If you just want to trash the ignored files and nothing else, use the @-X@ option. 
+Pembersihan (@git clean@) juga memiliki beberapa opsi berguna: jika Anda ingin melakukan pembersihan biasa dan membersihkan semua berkas yang biasa git abaikan, opsi @-x@ akan sangat membantu. Jika hanya ingin membuang berkas yang diabaikan saja, gunakan opsi @-X@.
 
-So if we wanted to do a major cleanup:
+Jadi untuk pembersihan keseluruhan:
 
 <pre>
 $ git clean -n -d -x
@@ -37,7 +37,7 @@ Would remove images/.DS_Store
 Would remove images/_site/
 </pre>
 
-That command would clean up files listed under the project's ".gitignore":http://github.com/qrush/gitready/blob/7f51407b796c10beb11fe9e67c0f563d41a92fd8/.gitignore file as well as removing other files and directories that aren't necessary. As always use precaution when running @git clean@, and make sure to double check what you're really deleting.
+Perintah di atas akan membersihkan berkas yang diabaikan via ".gitignore":http://github.com/qrush/gitready/blob/7f51407b796c10beb11fe9e67c0f563d41a92fd8/.gitignore dan juga berkas dan direktori lainnya yang tidak digunakan. Waspadalah saat menggunakan @git clean@, dan pastikan untuk mengecek apa yang mau dihapus.
 
-As always, if you know of other related tricks with @git clean@ let us know in the comments!
+Seperti biasa, kalau ada trik @git clean@ lainnya harap beritahu kami melalui komentar!
 
